@@ -1,0 +1,47 @@
+﻿<Window x:Class="Prodazha_Arenda_Nedvizhki.ClientRequestsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Мои заявки" Height="500" Width="900" WindowStartupLocation="CenterScreen" Background="#F0F0F0">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Background="#27AE60" Padding="20,12">
+            <TextBlock Text="Мои заявки на недвижимость" FontSize="16" FontWeight="Bold" Foreground="White"/>
+        </Border>
+        <DataGrid x:Name="Grid" Grid.Row="1" Margin="20" AutoGenerateColumns="False" IsReadOnly="True" Background="White" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding KOD_Zayavki}" Width="50"/>
+                <DataGridTextColumn Header="Объект" Binding="{Binding Zagolovok}" Width="*"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding StatusZayavki}" Width="120"/>
+                <DataGridTextColumn Header="Дата просмотра" Binding="{Binding DataProsmotra}" Width="120"/>
+                <DataGridTemplateColumn Header="Действия" Width="250">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Отозвать" Click="CancelRequest_Click" Tag="{Binding KOD_Zayavki}" Background="#E74C3C" Foreground="White" Margin="2" Padding="5" BorderThickness="0"/>
+                                <Button Content="Готов к сделке" Click="ReadyForDeal_Click" Tag="{Binding KOD_Zayavki}" Background="#27AE60" Foreground="White" Margin="2" Padding="5" BorderThickness="0">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding GotovKSdelke}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Border Grid.Row="2" Background="#ECECEC" Padding="20,8">
+            <Button Content="Закрыть" Click="CloseButton_Click" HorizontalAlignment="Right" Background="#95A5A6" Foreground="White" Padding="15,8" BorderThickness="0"/>
+        </Border>
+    </Grid>
+</Window>

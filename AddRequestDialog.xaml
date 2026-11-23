@@ -1,0 +1,32 @@
+﻿<Window x:Class="Prodazha_Arenda_Nedvizhki.AddRequestDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Заявка на просмотр" Height="320" Width="400"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#F0F0F0">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="TitleText" FontSize="16" FontWeight="Bold" Foreground="#2C3E50" 
+                   TextWrapping="Wrap" Margin="0,0,0,15"/>
+
+        <TextBlock Grid.Row="1" Text="Текст заявки:" FontWeight="SemiBold" Foreground="#555"/>
+        <TextBox x:Name="TextTextBox" Grid.Row="2" Height="80" Margin="0,5,0,10" 
+                 TextWrapping="Wrap" AcceptsReturn="True" Padding="5"/>
+
+        <TextBlock Grid.Row="3" Text="Желаемая дата просмотра:" FontWeight="SemiBold" Foreground="#555"/>
+        <DatePicker x:Name="DateBox" Grid.Row="4" Margin="0,5,0,0" VerticalAlignment="Top" Padding="5"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="4">
+            <Button Content="Отправить" Click="SendButton_Click" Background="#27AE60" Foreground="White" 
+                    FontWeight="Bold" Padding="15,8" Margin="0,0,10,0" BorderThickness="0" Cursor="Hand"/>
+            <Button Content="Отмена" Click="CancelButton_Click" Background="#95A5A6" Foreground="White" 
+                    FontWeight="Bold" Padding="15,8" BorderThickness="0" Cursor="Hand"/>
+        </StackPanel>
+    </Grid>
+</Window>
